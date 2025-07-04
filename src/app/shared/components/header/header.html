@@ -1,0 +1,51 @@
+<header class="header">
+  <div class="header-left">
+    <button class="sidebar-toggle" (click)="onToggleSidebar()">
+      <span class="material-icons">menu</span>
+    </button>
+    <div class="search-bar">
+      <span class="material-icons search-icon">search</span>
+      <input type="text" placeholder="Rechercher un patient, un médicament...">
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="header-actions">
+      <button class="header-action" matTooltip="Notifications">
+        <span class="material-icons">notifications</span>
+        <span class="badge">3</span>
+      </button>
+      <button class="header-action" matTooltip="Messages">
+        <span class="material-icons">email</span>
+        <span class="badge">5</span>
+      </button>
+      <button class="header-action" matTooltip="Calendrier">
+        <span class="material-icons">calendar_today</span>
+      </button>
+    </div>
+
+    <div class="user-profile">
+      <img src="assets/images/doctor-avatar.jpg" alt="Profile" class="profile-image">
+      <div class="profile-info">
+        <span class="profile-name">Dr. Dupont</span>
+        <span class="profile-role">Médecin généraliste</span>
+      </div>
+      <span class="material-icons dropdown-icon">arrow_drop_down</span>
+
+      <div class="profile-dropdown">
+        <a href="#" class="dropdown-item">
+          <span class="material-icons">person</span>
+          Mon profil
+        </a>
+        <a href="#" class="dropdown-item">
+          <span class="material-icons">settings</span>
+          Paramètres
+        </a>
+        <a href="#" class="dropdown-item">
+          <span class="material-icons">logout</span>
+          Déconnexion
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,28 @@
+<nav [class.collapsed]="!isOpen">
+  <div class="sidebar-header">
+    <h3 *ngIf="isOpen">Clinique Médicale</h3>
+    <span *ngIf="!isOpen">CM</span>
+  </div>
+
+  <ul>
+    <li *ngFor="let item of menuItems" [class.active-parent]="isActive(item.path, router?.url || '')">
+      <a [routerLink]="item.path"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: item.exact }">
+        <span class="material-icons">{{item.icon}}</span>
+        <span *ngIf="isOpen">{{item.label}}</span>
+        <span *ngIf="isOpen && item.children" class="dropdown-icon">
+          <i class="material-icons">keyboard_arrow_down</i>
+        </span>
+      </a>
+
+      <ul *ngIf="isOpen && item.children" class="submenu" [class.show]="isActive(item.path, router?.url || '')">
+        <li *ngFor="let child of item.children">
+          <a [routerLink]="child.path" routerLinkActive="active-sub">
+            {{child.label}}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,31 @@
+<p>appointements-form works!</p>
+<div class="card">
+  <h2>Nouveau Rendez-vous</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Patient</label>
+      <p-dropdown [options]="patients" [(ngModel)]="rendezVous.patientId" name="patientId" required></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label>Médecin</label>
+      <p-dropdown [options]="medecins" [(ngModel)]="rendezVous.medecinId" name="medecinId" required></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label>Date</label>
+      <p-calendar [(ngModel)]="rendezVous.date" name="date" [showTime]="false" dateFormat="dd/mm/yy" required></p-calendar>
+    </div>
+
+    <div class="form-group">
+      <label>Heure</label>
+      <p-calendar [(ngModel)]="rendezVous.heure" name="heure" [timeOnly]="true" hourFormat="24" required></p-calendar>
+    </div>
+
+    <div class="form-actions">
+      <button pButton type="button" label="Annuler" (click)="router.navigate(['/dashboard/rendezvous'])"></button>
+      <button pButton type="submit" label="Créer" [loading]="loading"></button>
+    </div>
+  </form>
+</div>
