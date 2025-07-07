@@ -1,7 +1,7 @@
 .header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 280px;
   right: 0;
   height: 70px;
   background-color: var(--bg-primary);
@@ -11,20 +11,28 @@
   align-items: center;
   padding: 0 var(--spacing-lg);
   z-index: var(--z-index-header);
-  transition: all 0.3s ease;
-  position: fixed;
-  top: 0;
-  left: 280px; /* Largeur initiale du sidebar */
-  right: 0;
-  height: 70px;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 10px;
+  border-radius: 10%;
 }
 
+@media (max-width: 768px) {
+  .header {
+    left: 0 !important;
+  }
+}
+
+.header.collapsed {
+  left: 80px;
+}
+/* Partie gauche du header */
 .header-left {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
 }
 
+/* Bouton de toggle */
 .sidebar-toggle {
   background: none;
   border: none;
@@ -40,7 +48,7 @@
   &:hover {
     color: var(--primary-color);
     background-color: rgba(25, 118, 210, 0.1);
-    transform: rotate(90deg);
+    transform: rotate(180deg);
   }
 
   .material-icons {
@@ -48,6 +56,7 @@
   }
 }
 
+/* Barre de recherche */
 .search-bar {
   position: relative;
   display: flex;
@@ -86,12 +95,14 @@
   }
 }
 
+/* Partie droite du header */
 .header-right {
   display: flex;
   align-items: center;
   gap: var(--spacing-xl);
 }
 
+/* Actions du header */
 .header-actions {
   display: flex;
   gap: var(--spacing-sm);
@@ -133,6 +144,7 @@
   }
 }
 
+/* Profil utilisateur */
 .user-profile {
   position: relative;
   display: flex;
@@ -182,6 +194,7 @@
   transition: transform 0.3s ease;
 }
 
+/* Menu déroulant */
 .profile-dropdown {
   position: absolute;
   top: 100%;
@@ -239,6 +252,7 @@
 
 @media (max-width: 768px) {
   .header {
+    left: 0 !important;
     padding: 0 var(--spacing-md);
   }
 

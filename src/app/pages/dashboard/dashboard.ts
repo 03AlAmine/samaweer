@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
@@ -13,16 +13,20 @@ import { HeaderComponent } from '../../shared/components/header/header';
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   sidebarOpen = true;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit() {
+    this.checkScreenSize();
+    window.addEventListener('resize', this.checkScreenSize.bind(this));
+  }
+
+  checkScreenSize() {
+    this.sidebarOpen = window.innerWidth >= 768;
+  }
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
   }
-
-  logout() {
-    this.authService.logout().then(() => this.router.navigate(['/login']));
-  }
 }
+

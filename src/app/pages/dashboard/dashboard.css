@@ -1,8 +1,18 @@
 .dashboard-container {
   display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  flex-direction: column;
 }
+
+/* Nouvelle structure avec sidebar en premier */
+app-sidebar {
+  order: 1;
+}
+
+app-header {
+  order: 2;
+}
+
 
 .main-content {
   display: flex;
@@ -12,17 +22,50 @@
 
 .content-area {
   flex: 1;
-  padding: var(--spacing-md);
-  transition: margin-left 0.3s ease;
+  order: 3;
+  padding: var(--spacing-xl) var(--spacing-md);
+  margin-left: 280px; /* Compense le sidebar */
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 50px; /* Compense le header */
+}
+/* Quand le sidebar est réduit */
+.sidebar-collapsed .content-area {
+  margin-left: 80px;
 }
 
+.sidebar-collapsed .header {
+  right: 80px;
+}
 /* Version responsive */
 @media (max-width: 768px) {
-  .main-content {
-    flex-direction: column;
+  .header {
+    left: 0 !important; /* Le header prend toute la largeur */
   }
 
   .content-area {
     margin-left: 0 !important;
+  }
+
+  /* Quand le sidebar est ouvert en mobile */
+  nav:not(.collapsed) + .content-area {
+    margin-left: 0;
+  }
+}
+@media (max-width: 768px) {
+  nav {
+    transform: translateX(-100%);
+  }
+
+  nav:not(.collapsed) {
+    transform: translateX(0);
+    width: 280px;
+  }
+
+  .content-area {
+    margin-left: 0 !important;
+  }
+
+  .header {
+    left: 0 !important;
   }
 }

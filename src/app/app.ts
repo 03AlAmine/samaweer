@@ -8,6 +8,7 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrls: ['./app.css'] // ✅ attention au "s"
 })
+
 export class App {
   protected title = 'samaweer';
 }

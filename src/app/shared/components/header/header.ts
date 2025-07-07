@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, Output, EventEmitter, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./header.css']
 })
 export class HeaderComponent {
+  @Input() sidebarOpen: boolean = true; // ✅ Ajout requis
+
   @Output() toggleSidebar = new EventEmitter<void>();
+
   isDropdownOpen = false;
 
   onToggleSidebar() {

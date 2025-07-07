@@ -5,7 +5,7 @@
   </div>
 
   <ul>
-    <li *ngFor="let item of menuItems" [class.active-parent]="isActive(item.path, router?.url || '')">
+    <li *ngFor="let item of menuItems" [class.active-parent]="isActive(item.path, router.url || '')">
       <a [routerLink]="item.path"
          routerLinkActive="active"
          [routerLinkActiveOptions]="{ exact: item.exact }">
@@ -16,7 +16,7 @@
         </span>
       </a>
 
-      <ul *ngIf="isOpen && item.children" class="submenu" [class.show]="isActive(item.path, router?.url || '')">
+      <ul *ngIf="isOpen && item.children" class="submenu" [class.show]="isActive(item.path, router.url || '')">
         <li *ngFor="let child of item.children">
           <a [routerLink]="child.path" routerLinkActive="active-sub">
             {{child.label}}

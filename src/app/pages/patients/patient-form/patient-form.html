@@ -4,22 +4,28 @@
   <form (ngSubmit)="onSubmit()" #patientForm="ngForm">
     <div class="form-group">
       <label for="nom">Nom</label>
-      <input pInputText id="nom" [(ngModel)]="patient.nom" name="nom" required>
+      <input pInputText id="nom" [(ngModel)]="patient.nom" name="nom" required #nom="ngModel">
+      <small *ngIf="nom.invalid && nom.touched" class="error-message">Le nom est requis</small>
     </div>
 
     <div class="form-group">
       <label for="prenom">Prénom</label>
-      <input pInputText id="prenom" [(ngModel)]="patient.prenom" name="prenom" required>
+      <input pInputText id="prenom" [(ngModel)]="patient.prenom" name="prenom" required #prenom="ngModel">
+      <small *ngIf="prenom.invalid && prenom.touched" class="error-message">Le prénom est requis</small>
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input pInputText id="email" type="email" [(ngModel)]="patient.email" name="email" required>
+      <input pInputText id="email" type="email" [(ngModel)]="patient.email" name="email" required #email="ngModel">
+      <small *ngIf="email.invalid && email.touched" class="error-message">
+        {{ email.errors?.['required'] ? 'L\'email est requis' : 'Veuillez entrer un email valide' }}
+      </small>
     </div>
 
     <div class="form-group">
       <label for="telephone">Téléphone</label>
-      <input pInputText id="telephone" [(ngModel)]="patient.telephone" name="telephone" required>
+      <input pInputText id="telephone" [(ngModel)]="patient.telephone" name="telephone" required #telephone="ngModel">
+      <small *ngIf="telephone.invalid && telephone.touched" class="error-message">Le téléphone est requis</small>
     </div>
 
     <div class="form-group">
@@ -28,8 +34,10 @@
     </div>
 
     <div class="form-actions">
-      <button pButton type="button" label="Annuler" (click)="router.navigate(['/dashboard/patients'])"></button>
+      <button pButton type="button" label="Annuler" (click)="router.navigate(['/dashboard/patients'])"
+              icon="pi pi-times"></button>
       <button pButton type="submit" label="{{ isEdit ? 'Mettre à jour' : 'Créer' }}"
+              icon="pi pi-check"
               [disabled]="patientForm.invalid || loading"
               [loading]="loading"></button>
     </div>
